@@ -6,6 +6,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
     status_info = models.CharField(default="Enter status", max_length=1000)
+    is_volunteer = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username} Profile'
