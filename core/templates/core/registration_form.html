@@ -54,17 +54,17 @@
                     </div>
                     <form action="" class="card" method="post">
                         <div class="card-body p-6">
-                            <div class="card-title">Create new account</div>
+                            <div class="card-title">יצירת חשבון חדש</div>
 
                             {%csrf_token%}
                             {%include 'core/form-template.html'%}
                             <div class="form-footer">
-                                <button class="btn btn-primary btn-block" type="submit">Create new account</button>
+                                <button class="btn btn-primary btn-block" type="submit">צור חשבון</button>
                             </div>
                         </div>
                     </form>
                     <div class="text-center text-muted">
-                        Already have account? <a href="{%url 'login'%}">Sign in</a>
+                        יש לך חשבון כבר?<a href="{%url 'login'%}">התחבר</a>
                     </div>
                 </div>
             </div>
