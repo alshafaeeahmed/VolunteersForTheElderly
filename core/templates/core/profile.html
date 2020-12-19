@@ -31,6 +31,7 @@
 
 
 
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -111,11 +112,10 @@
                                 <img class="card-profile-img" src="{{person.profile.profile_photo.url}}">
                                 <h3 class="mb-3">{{person.username}}</h3>
                                 {% if person.profile.is_volunteer %}
-                                     <h3 class="mb-3">Volunteer </h3>
+                                <h3 class="mb-3">Volunteer </h3>
                                 {% else %}
-                                     <h3 class="mb-3">Eldry</h3>
+                                <h3 class="mb-3">Eldry</h3>
                                 {% endif %}
-
 
 
                                 {%if not u_form%}
@@ -222,6 +222,8 @@
                         <form action="" class="card" enctype="multipart/form-data" method="post">
                             <div class="card-body p-6">
                                 <div class="card-title">Update Profile info</div>
+                                User {{ obj.name }} has phone number {{ obj.phone }}
+
                                 {%csrf_token%}
 
 
