@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from phone_field import PhoneField
 
 
 class Profile(models.Model):
@@ -7,6 +8,7 @@ class Profile(models.Model):
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
     status_info = models.CharField(default="Enter status", max_length=1000)
     is_volunteer = models.BooleanField(default=False)
+    phone = PhoneField(blank=True, help_text='Contact phone number')
 
     def __str__(self):
         return f'{self.user.username} Profile'
