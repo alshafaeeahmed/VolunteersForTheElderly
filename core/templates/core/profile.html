@@ -145,7 +145,7 @@
                             <div class="card-body">
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4 class="m-0">Phone Number</h4>
+                                        <h4 class="m-0">מספר הטלפון</h4>
                                         <p class="text-muted mb-0">{{person.profile.phone_number}}</p>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                             <div class="card-body">
                                 <div class="media">
                                     <div class="media-body">
-                                        <h4 class="m-0">Status</h4>
+                                        <h4 class="m-0">סטטוס</h4>
                                         <p class="text-muted mb-0">{{person.profile.status_info}}</p>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">My Profile</h3>
+                                <h3 class="card-title">הפרופיל שלי</h3>
                             </div>
                             <div class="card-body">
 
@@ -171,7 +171,7 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label class="form-label">Email-Address:</label>{{person.email}}
+                                            <label class="form-label">:כתובת דוא"ל</label>{{person.email}}
 
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Followers of {{person.username}}</h3>
+                                <h3 class="card-title">עוקבים אחר {{person.username}}</h3>
                             </div>
                             <div class="card-body">
                                 {%for followers in person.follower_set.all%}
@@ -204,7 +204,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">{{person.username}} is following</h3>
+                                <h3 class="card-title">{{person.username}} עוקב</h3>
                             </div>
                             <div class="card-body">
 
@@ -230,7 +230,7 @@
                         {%if u_form or p_form%}
                         <form action="" class="card" enctype="multipart/form-data" method="post">
                             <div class="card-body p-6">
-                                <div class="card-title">Update Profile info</div>
+                                <div class="card-title">עדכן את פרטי הפרופיל</div>
                                 {%csrf_token%}
 
 
