@@ -32,6 +32,7 @@
 
 
 
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -143,11 +144,19 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="media">
-
+                                    <div class="media-body">
+                                        <h4 class="m-0">Phone Number</h4>
+                                        <p class="text-muted mb-0">{{person.profile.phone_number}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media">
                                     <div class="media-body">
                                         <h4 class="m-0">Status</h4>
                                         <p class="text-muted mb-0">{{person.profile.status_info}}</p>
-
                                     </div>
                                 </div>
                             </div>
@@ -222,8 +231,6 @@
                         <form action="" class="card" enctype="multipart/form-data" method="post">
                             <div class="card-body p-6">
                                 <div class="card-title">Update Profile info</div>
-                                User {{ obj.name }} has phone number {{ obj.phone }}
-
                                 {%csrf_token%}
 
 

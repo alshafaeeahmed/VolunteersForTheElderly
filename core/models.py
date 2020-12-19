@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 from phone_field import PhoneField
 
@@ -8,7 +9,9 @@ class Profile(models.Model):
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
     status_info = models.CharField(default="Enter status", max_length=1000)
     is_volunteer = models.BooleanField(default=False)
-    phone = PhoneField(blank=True, help_text='Contact phone number')
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,10}$',
+                                 message="Phone number must be entered in the format: '+0000000000'")
+    phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
