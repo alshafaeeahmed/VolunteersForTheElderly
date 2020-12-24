@@ -4,10 +4,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-
 from core import views as user_views
+from core import views
+
 
 urlpatterns = [
+    url(r'^$', views.index, name='core/home'),
+    # new url definition
+    url(r'^contact/$', views.contact, name='core/contact'),
     path('', user_views.feed, name='home'),
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),

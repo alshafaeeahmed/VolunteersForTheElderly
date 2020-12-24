@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
 
+from core.forms import ContactForm
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment
 from .models import User, Post
 
@@ -161,3 +162,12 @@ def feed(request):
         'comment_form': comment_form,
     }
     return render(request, 'core/index.html', context)
+
+
+# build the contact function
+def contact(request):
+    form_class = ContactForm
+
+    return render(request, 'core/contact.html', {
+        'form': form_class,
+    })
