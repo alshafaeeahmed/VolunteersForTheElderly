@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^postweb/(?P<username>\w+)/$', user_views.postweb, name="postweb"),
     url(r'^commentweb/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.commentweb, name="commentweb"),
     path('feed/', user_views.feed, name="feed"),
+    url(r'^urgent_request/$', views.urgent_request, name='core/urgent_request'),
+
 
 ]
 

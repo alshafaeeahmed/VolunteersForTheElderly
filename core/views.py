@@ -4,9 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
-
-from core.forms import ContactForm
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm
 from .models import User, Post
 
 
@@ -170,4 +168,13 @@ def contact(request):
 
     return render(request, 'core/contact.html', {
         'form': form_class,
+    })
+
+
+
+def urgent_request(request):
+    urgent_request_class = ContactForm
+
+    return render(request, 'core/urgent_request.html', {
+        'form': urgent_request_class,
     })

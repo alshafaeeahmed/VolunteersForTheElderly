@@ -43,3 +43,9 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     comment_text = models.CharField(default="Enter Comment Here", max_length=2000)
+
+#for urgent recquest page
+
+class Message(models.Model):
+    email = models.EmailField(max_length=254)
+    message = models.TextField(max_length=300)

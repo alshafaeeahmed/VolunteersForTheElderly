@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 
 from .models import Profile, Post, Comment
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Field
 
 
 class UserForm(forms.ModelForm):
@@ -46,3 +48,17 @@ class ContactForm(forms.Form):
         required=True,
         widget=forms.Textarea
     )
+
+
+class urgent_request(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(urgent_request, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+
+        self.helper.form_method = 'post'
+        self.helper.form_action = '/contact'
+
+        self.helper.add_input(Submit('submit', 'Submit'))
+
+    email = forms.EmailField(max_length=254)
+    message = forms.CharField(max_length=254, widget=forms.Textarea)
