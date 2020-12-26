@@ -53,18 +53,18 @@
                     </div>
                     <form action="" class="card" method="post">
                         <div class="card-body p-6">
-                            <div class="card-title">Login to your account</div>
+                            <div class="card-title">התחבר לחשבונך</div>
                             {%csrf_token%}
                             {%include 'core/form-template.html'%}
 
 
                             <div class="form-footer">
-                                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                                <button class="btn btn-primary btn-block" type="submit">התחבר</button>
                             </div>
                         </div>
                     </form>
                     <div class="text-center text-muted">
-                        Don't have account yet? <a href="{% url 'register'%}">Sign up</a>
+                        Don't have account yet? <a href="{% url 'register'%}">הירשם</a>
                     </div>
                 </div>
             </div>
