@@ -33,6 +33,7 @@
 
 
 
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -83,6 +84,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> Logout</a>
                             </li>
+                            <a class="nav-link" href="/contact/"><i class="fa fa-phone"></i> contact</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
                             </li>
@@ -116,7 +119,7 @@
                                 <h3 class="mb-3">מבוגר נכבד</h3>
                                 {% endif %}
 
-
+                                {% if not person.profile.is_volunteer %}
                                 {%if not u_form%}
                                 {%if f %}
                                 <form action="{% url 'followweb' person.username%}" enctype="multipart/form-data"
@@ -124,18 +127,20 @@
                                     {%csrf_token%}
 
                                     <button class="btn btn-outline-primary btn-sm">
-                                        <span class="fa fa-user"></span> Follow
+                                        <span class="fa fa-user"></span> התחל להשגחה
                                     </button>
                                 </form>
                                 {%else %}
                                 <form action="{% url 'unfollowweb' person.username%}" method="POST">
                                     {%csrf_token%}
                                     <button class="btn btn-primary btn-sm">
-                                        <span class="fa fa-user"></span> Unfollow
+                                        <span class="fa fa-user"></span> ביטול השגחה
                                     </button>
                                 </form>
                                 {%endif%}
                                 {%endif%}
+                                {% endif %}
+
                             </div>
                         </div>
 
@@ -178,9 +183,10 @@
 
                             </div>
                         </div>
-                        <div class="card">
+                        {% if person.profile.is_volunteer %}
+                                <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">עוקבים אחר {{person.username}}</h3>
+                                <h3 class="card-title">משגיח אחרי </h3>
                             </div>
                             <div class="card-body">
                                 {%for followers in person.follower_set.all%}
@@ -200,9 +206,10 @@
                                 {%endfor%}
                             </div>
                         </div>
-                        <div class="card">
+                                {% else %}
+                                <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">{{person.username}} עוקב</h3>
+                                <h3 class="card-title">רשימת משגיחים</h3>
                             </div>
                             <div class="card-body">
 
@@ -225,6 +232,10 @@
 
                             </div>
                         </div>
+                                {% endif %}
+
+
+
                         {%if u_form or p_form%}
                         <form action="" class="card" enctype="multipart/form-data" method="post">
                             <div class="card-body p-6">
