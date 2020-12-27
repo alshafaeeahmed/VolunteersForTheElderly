@@ -1,9 +1,9 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.models import User
 
 from .models import Profile, Post, Comment
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Field
 
 
 class UserForm(forms.ModelForm):
@@ -21,6 +21,7 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email']
+
 
 
 class UpdateProfileForm(forms.ModelForm):

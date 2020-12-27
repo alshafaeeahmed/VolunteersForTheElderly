@@ -12,6 +12,8 @@ class Profile(models.Model):
                                  message="Phone number must be entered in the format: '+0000000000'")
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True)
 
+
+
     def __str__(self):
         return f'{self.user.username} Profile'
 
@@ -44,7 +46,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     comment_text = models.CharField(default="Enter Comment Here", max_length=2000)
 
-#for urgent recquest page
+
+# for urgent recquest page
 
 class Message(models.Model):
     email = models.EmailField(max_length=254)
