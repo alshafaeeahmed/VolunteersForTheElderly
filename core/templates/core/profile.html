@@ -129,7 +129,7 @@
                                 {% if not person.profile.is_volunteer %}
                                 {%if not u_form%}
                                 {%if f %}
-                                <form action="{% url 'followweb' person.username%}" enctype="multipart/form-data"
+                                <form action="{% url 'follow_user' person.username%}" enctype="multipart/form-data"
                                       method="POST">
                                     {%csrf_token%}
 
@@ -138,7 +138,7 @@
                                     </button>
                                 </form>
                                 {%else %}
-                                <form action="{% url 'unfollowweb' person.username%}" method="POST">
+                                <form action="{% url 'unfollow_user' person.username%}" method="POST">
                                     {%csrf_token%}
                                     <button class="btn btn-primary btn-sm">
                                         <span class="fa fa-user"></span> ביטול השגחה
@@ -271,7 +271,7 @@
                                 <div class="input-group">
 
                                     <div class="input-group-append">
-                                        <form action="{% url 'postweb' user.username%}" enctype="multipart/form-data"
+                                        <form action="{% url 'create_post' user.username%}" enctype="multipart/form-data"
                                               method="POST">
                                             {%csrf_token%}
                                             {{post_form | crispy}}
@@ -318,7 +318,7 @@
                                                          style="background-image: url({{user.profile.profile_photo.url}})"></div>
                                                     <div class="media-body">
                                                         <strong>{{user.username}}: </strong>
-                                                        <form action="{% url 'commentweb' person.username posts.pk%}"
+                                                        <form action="{% url 'create_comment' person.username posts.pk%}"
                                                               method="POST">
                                                             {%csrf_token%}
                                                             {{comment_form|crispy}}

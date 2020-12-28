@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
+
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm
 from .models import User, Post
 
@@ -17,11 +18,9 @@ def profile(request, username):
     if request.method == 'POST':
         u_form = UpdateUserForm(request.POST, instance=request.user)
         p_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
-
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-
             messages.success(request, f'Your Profile has been updated!')
             url = reverse('profile', kwargs={'username': username})
             return redirect(url)
@@ -44,7 +43,7 @@ def profile(request, username):
             person = User.objects.get(username=username)
             already_a_follower = 0
             for followers in person.follower_set.all():
-                if (followers.follower_user == request.user.username):
+                if followers.follower_user == request.user.username:
                     already_a_follower = 1
                     break;
 
@@ -93,19 +92,18 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-def followweb(request, username):
+def follow_user(request, username):
     if request.user.username != username:
         if request.method == 'POST':
             disciple = User.objects.get(username=request.user.username)
             leader = User.objects.get(username=username)
-
             leader.follower_set.create(follower_user=disciple)
             disciple.following_set.create(following_user=leader)
             url = reverse('profile', kwargs={'username': username})
             return redirect(url)
 
 
-def unfollowweb(request, username):
+def unfollow_user(request, username):
     if request.method == 'POST':
         disciple = User.objects.get(username=request.user.username)
         leader = User.objects.get(username=username)
@@ -121,23 +119,20 @@ def welcome(request):
     return redirect(url)
 
 
-def postweb(request, username):
+def create_post(request, username):
     if request.method == 'POST':
-
         post_form = CreatePost(request.POST, request.FILES)
         if post_form.is_valid():
             post_text = post_form.cleaned_data['post_text']
             post_picture = request.FILES.get('post_picture')
             request.user.post_set.create(post_text=post_text, post_picture=post_picture)
             messages.success(request, f'You have successfully posted!')
-
     url = reverse('profile', kwargs={'username': username})
     return redirect(url)
 
 
-def commentweb(request, username, post_id):
+def create_comment(request, username, post_id):
     if request.method == 'POST':
-
         comment_form = CreateComment(request.POST)
         if comment_form.is_valid():
             comment_text = comment_form.cleaned_data['comment_text']
@@ -153,7 +148,6 @@ def commentweb(request, username, post_id):
 
 def feed(request):
     post_all = Post.objects.order_by('created_at').reverse()
-
     comment_form = CreateComment()
     context = {
         'post_all': post_all,
@@ -169,7 +163,6 @@ def contact(request):
     return render(request, 'core/contact.html', {
         'form': form_class,
     })
-
 
 
 def urgent_request(request):
