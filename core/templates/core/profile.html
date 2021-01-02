@@ -34,6 +34,8 @@
 
 
 
+
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -125,7 +127,6 @@
                                 {% else %}
                                 <h3 class="mb-3">מבוגר נכבד</h3>
                                 {% endif %}
-
                                 {% if not person.profile.is_volunteer %}
                                 {%if not u_form%}
                                 {%if f %}
@@ -191,9 +192,9 @@
                             </div>
                         </div>
                         {% if person.profile.is_volunteer %}
-                                <div class="card">
+                        <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">רשימת המבוגרים  </h3>
+                                <h3 class="card-title">רשימת המבוגרים </h3>
                             </div>
                             <div class="card-body">
                                 {%for followers in person.follower_set.all%}
@@ -212,9 +213,32 @@
 
                                 {%endfor%}
                             </div>
+
                         </div>
-                                {% else %}
-                                <div class="card">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">כל המבוגרים</h3>
+                            </div>
+                            <div class="card-body">
+
+                                {%for elderly in all_elderly%}
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a class="text-default"
+                                               href="{%url 'profile' elderly%}"><label
+                                                    class="form-label">{{elderly}}</label></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">רשימת משגיחים</h3>
                             </div>
@@ -233,14 +257,32 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 {%endfor%}
-
-
                             </div>
                         </div>
-                                {% endif %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">כל המשגיחים</h3>
+                            </div>
+                            <div class="card-body">
 
+                                {%for volunteer in all_volunteers%}
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a class="text-default"
+                                               href="{%url 'profile' volunteer%}"><label
+                                                    class="form-label">{{volunteer}}</label></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                        {% endif %}
 
 
                         {%if u_form or p_form%}
@@ -271,7 +313,8 @@
                                 <div class="input-group">
 
                                     <div class="input-group-append">
-                                        <form action="{% url 'create_post' user.username%}" enctype="multipart/form-data"
+                                        <form action="{% url 'create_post' user.username%}"
+                                              enctype="multipart/form-data"
                                               method="POST">
                                             {%csrf_token%}
                                             {{post_form | crispy}}

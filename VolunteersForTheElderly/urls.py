@@ -10,8 +10,8 @@ from core import views
 
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
-    # new url definition
     url(r'^contact/$', views.contact, name='core/contact'),
+    url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
     path('', user_views.feed, name='home'),
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
@@ -26,8 +26,6 @@ urlpatterns = [
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
     path('feed/', user_views.feed, name="feed"),
     url(r'^urgent_request/$', views.urgent_request, name='core/urgent_request'),
-
-
 ]
 
 if settings.DEBUG:

@@ -9,6 +9,24 @@ from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, Crea
 from .models import User, Post, Profile
 
 
+def get_all_volunteers():
+    result = list()
+    users_list = Profile.objects.all()
+    for user_item in users_list:
+        if getattr(user_item, "is_volunteer"):
+            result.append(user_item.user.username)
+    return result
+
+
+def get_all_elderly():
+    result = list()
+    users_list = Profile.objects.all()
+    for user_item in users_list:
+        if not getattr(user_item, "is_volunteer"):
+            result.append(user_item.user.username)
+    return result
+
+
 def index(request):
     return render(request, 'core/index.html')
 
@@ -60,6 +78,8 @@ def profile(request, username):
                 }
         comment_form = CreateComment()
         context.update({'comment_form': comment_form})
+        context.update({'all_volunteers': get_all_volunteers()})
+        context.update({'all_elderly': get_all_elderly()})
 
     return render(request, 'core/profile.html', context)
 
@@ -170,10 +190,11 @@ def urgent_request(request):
     })
 
 
+def get_all_profiles(request):
+    field_names = [f.name for f in Profile._meta.get_fields()]
+    data = [[getattr(ins, name) for name in field_names]
+            for ins in Profile.objects.prefetch_related().all()]
+    return render(request, 'core/profiles_table.html', {'field_names': field_names, 'data': data})
+
 # print(User.objects)
 # print(User.objects.get(username="ahmed"))
-
-users_list = Profile.objects.all()
-for user_item in users_list:
-    if not getattr(user_item, "is_volunteer"):
-        print(user_item.user.username)
