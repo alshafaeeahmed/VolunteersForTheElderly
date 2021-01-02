@@ -92,7 +92,7 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-def follow_user(request, username):
+def follow_elderly(request, username):
     if request.user.username != username:
         if request.method == 'POST':
             disciple = User.objects.get(username=request.user.username)
@@ -103,7 +103,7 @@ def follow_user(request, username):
             return redirect(url)
 
 
-def unfollow_user(request, username):
+def unfollow_elderly(request, username):
     if request.method == 'POST':
         disciple = User.objects.get(username=request.user.username)
         leader = User.objects.get(username=username)
