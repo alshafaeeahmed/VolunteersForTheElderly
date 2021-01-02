@@ -14,7 +14,8 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-#bild the user form
+
+# bild the user form
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required field')
 
@@ -23,11 +24,10 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['email']
 
 
-
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['status_info', 'profile_photo', 'is_volunteer', 'phone_number']
+        fields = ['status_info', 'profile_photo', 'is_volunteer', 'phone_number', 'gender', 'address']
 
 
 class CreatePost(forms.ModelForm):

@@ -14,7 +14,7 @@ def get_all_volunteers():
     users_list = Profile.objects.all()
     for user_item in users_list:
         if getattr(user_item, "is_volunteer"):
-            result.append(user_item.user.username)
+            result.append(user_item)
     return result
 
 
@@ -23,7 +23,7 @@ def get_all_elderly():
     users_list = Profile.objects.all()
     for user_item in users_list:
         if not getattr(user_item, "is_volunteer"):
-            result.append(user_item.user.username)
+            result.append(user_item)
     return result
 
 

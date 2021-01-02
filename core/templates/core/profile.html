@@ -36,6 +36,9 @@
 
 
 
+
+
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -214,18 +217,16 @@
                                 <h3 class="card-title">כל המבוגרים</h3>
                             </div>
                             <div class="card-body">
-
                                 {%for elderly in all_elderly%}
-
                                 <div class="row">
-
                                     <div class="col">
-                                        <div class="form-group">
-                                            <a class="text-default"
-                                               href="{%url 'profile' elderly%}"><label
-                                                    class="form-label">{{elderly}}</label></a>
-
-                                        </div>
+                                        <a class="text-default"
+                                           href="{%url 'profile' elderly.user.username%}"><label
+                                                class="form-label">{{elderly.user.username}}</label></a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="text-default"><label
+                                                class="form-label">{{elderly.address}}</label></a>
                                     </div>
                                 </div>
                                 {%endfor%}
@@ -259,18 +260,16 @@
                                 <h3 class="card-title">כל המשגיחים</h3>
                             </div>
                             <div class="card-body">
-
                                 {%for volunteer in all_volunteers%}
-
                                 <div class="row">
-
                                     <div class="col">
-                                        <div class="form-group">
-                                            <a class="text-default"
-                                               href="{%url 'profile' volunteer%}"><label
-                                                    class="form-label">{{volunteer}}</label></a>
-
-                                        </div>
+                                        <a class="text-default"
+                                           href="{%url 'profile' volunteer.user.username%}"><label
+                                                class="form-label">{{volunteer.user.username}}</label></a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="text-default"><label
+                                                class="form-label">{{volunteer.address}}</label></a>
                                     </div>
                                 </div>
                                 {%endfor%}
