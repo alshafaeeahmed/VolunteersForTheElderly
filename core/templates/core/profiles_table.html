@@ -36,6 +36,7 @@
 
 
 
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -88,6 +89,8 @@
                             </li>
                             <a class="nav-link" href="/contact/"><i class="fa fa-phone"></i>צור קשר</a>
                             </li>
+                            <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
                             </li>
@@ -107,37 +110,60 @@
         <div class="my-3 my-md-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
 
                     </div>
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">רשימת משגיחים</h3>
+                                <h3 class="card-title">כל המבוגרים</h3>
                             </div>
                             <div class="card-body">
 
-                                <table>
-                                    <thead>
-                                    {% for head in field_names %}
-                                    <th>{{ head }}</th>
-                                    {% endfor %}
-                                    </thead>
-                                    <tbody>
-                                    {% for row in data %}
-                                    <tr>
-                                        {% for cell in row %}
-                                        <td>{{ cell }}</td>
-                                        {% endfor %}
-                                    </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                {%for elderly in all_elderly%}
 
+                                <div class="row">
 
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a class="text-default"
+                                               href="{%url 'profile' elderly%}"><label
+                                                    class="form-label">{{elderly}}</label></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
                             </div>
                         </div>
+
+                    </div><div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">כל המשגיחים</h3>
+                            </div>
+                            <div class="card-body">
+
+                                {%for volunteer in all_volunteers%}
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <a class="text-default"
+                                               href="{%url 'profile' volunteer%}"><label
+                                                    class="form-label">{{volunteer}}</label></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">
 
                     </div>
                 </div>

@@ -191,10 +191,10 @@ def urgent_request(request):
 
 
 def get_all_profiles(request):
-    field_names = [f.name for f in Profile._meta.get_fields()]
-    data = [[getattr(ins, name) for name in field_names]
-            for ins in Profile.objects.prefetch_related().all()]
-    return render(request, 'core/profiles_table.html', {'field_names': field_names, 'data': data})
+    context = {}
+    context.update({'all_volunteers': get_all_volunteers()})
+    context.update({'all_elderly': get_all_elderly()})
+    return render(request, 'core/profiles_table.html', context)
 
 # print(User.objects)
 # print(User.objects.get(username="ahmed"))
