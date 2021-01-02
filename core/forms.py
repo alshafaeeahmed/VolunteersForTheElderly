@@ -14,7 +14,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
-
+#bild the user form
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required field')
 

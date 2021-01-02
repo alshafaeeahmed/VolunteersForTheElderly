@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views.generic import View
 
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm
-from .models import User, Post
+from .models import User, Post, Profile
 
 
 def index(request):
@@ -107,7 +107,6 @@ def unfollow_user(request, username):
     if request.method == 'POST':
         disciple = User.objects.get(username=request.user.username)
         leader = User.objects.get(username=username)
-
         leader.follower_set.get(follower_user=disciple).delete()
         disciple.following_set.get(following_user=leader).delete()
         url = reverse('profile', kwargs={'username': username})
@@ -139,9 +138,7 @@ def create_comment(request, username, post_id):
             user = User.objects.get(username=username)
             post = user.post_set.get(pk=post_id)
             post.comment_set.create(user=request.user, comment_text=comment_text)
-
             messages.success(request, f'Your Comment has been posted')
-
     url = reverse('profile', kwargs={'username': username})
     return redirect(url)
 
@@ -171,3 +168,12 @@ def urgent_request(request):
     return render(request, 'core/urgent_request.html', {
         'form': urgent_request_class,
     })
+
+
+# print(User.objects)
+# print(User.objects.get(username="ahmed"))
+
+users_list = Profile.objects.all()
+for user_item in users_list:
+    if not getattr(user_item, "is_volunteer"):
+        print(user_item.user.username)
