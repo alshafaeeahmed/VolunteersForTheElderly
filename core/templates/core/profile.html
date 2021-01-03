@@ -101,8 +101,16 @@
                                 <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i>בקשה דחופה</a>
                             </li>
                             {%endif%}
-
-
+                            {% if not person.profile.is_volunteer %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-calendar" aria-hidden="true"></i>הצגת רשימת מבוגרים יומית </a>
+                            </li>
+                            {%endif%}
+                            {% if person.profile.is_volunteer %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-hand-rock-o" aria-hidden="true"></i>זמינות</a>
+                            </li>
+                            {%endif%}
                         </ul>
                     </div>
                 </div>
