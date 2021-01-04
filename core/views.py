@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
@@ -88,7 +89,7 @@ def profile(request, username):
         context.update({'all_volunteers': get_all_volunteers()})
         context.update({'all_elderly': get_all_elderly()})
         context.update({'available_volunteers': get_all_available_volunteers(request)})
-    return render(request,'core/profile.html', context)
+    return render(request, 'core/profile.html', context)
 
 
 class UserFormView(View):
@@ -108,13 +109,13 @@ class UserFormView(View):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-
+            Profile(user=user).save()
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     messages.success(request, f'Account created for {username}!')
-                    return render(request, 'core/index.html')
+                    return HttpResponseRedirect('/profile/' + username + '/')
 
         return render(request, self.template_name, {'form': form})
 

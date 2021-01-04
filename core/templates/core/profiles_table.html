@@ -1,6 +1,5 @@
 {%load static %}
 {% load crispy_forms_tags %}
-
 <!doctype html>
 <html dir="ltr" lang="en">
 <head>
@@ -73,8 +72,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
                             </li>
-
-
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק</a>
                             </li>
@@ -82,16 +79,14 @@
                             </li>
                             <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
-                            </li>
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i>בקשה דחופה</a>
                             </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנבים הזמינים</a>
+                            </li>
                             {%endif%}
-
-
                         </ul>
                     </div>
                 </div>

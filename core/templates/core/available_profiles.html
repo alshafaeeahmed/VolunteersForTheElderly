@@ -82,14 +82,12 @@
                             </li>
                             <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
                             </li>
-                            <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנבים הזמינים</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
-                            </li>
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i>בקשה דחופה</a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנבים הזמינים</a>
                             </li>
                             {%endif%}
 
