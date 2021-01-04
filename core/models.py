@@ -5,24 +5,29 @@ from django.db import models
 ADDRESS_CHOICES = (
     ('BeerSheba', 'באר שבע'),
     ('TelAviv', 'תל אביב'),
-    ('Ashdod','אשדוד'),
-    ('Jerusalem','ירושלים'),
-    ('Haifa','חיפה'),
-    ('Jaffa','יפו'),
-    ('Acre','עכו'),
-    ('Nazareth','נצרת'),
-    ('Lod','לוד'),
-    ('Arad','ערד'),
-    ('Dimona','דימונה'),
-    ('Rishon Lezion','רישון לציון'),
-    ('Ashkelon','אשקלון')
-
-
+    ('Ashdod', 'אשדוד'),
+    ('Jerusalem', 'ירושלים'),
+    ('Haifa', 'חיפה'),
+    ('Jaffa', 'יפו'),
+    ('Acre', 'עכו'),
+    ('Nazareth', 'נצרת'),
+    ('Lod', 'לוד'),
+    ('Arad', 'ערד'),
+    ('Dimona', 'דימונה'),
+    ('Rishon Lezion', 'רישון לציון'),
+    ('Ashkelon', 'אשקלון')
 
 )
 GENDER_CHOICES = (
     ('Male', 'זכר'),
     ('Female', 'נקבה'),
+)
+Rating_CHOICES = (
+    ('טוב', 'טוב'),
+    ('בסדר', 'בסדר'),
+    ('טוב מאוד', 'טוב מאוד'),
+    ('לא טוב', 'לא טוב'),
+    ('מצויין', 'מצויין'),
 )
 
 
@@ -35,7 +40,8 @@ class Profile(models.Model):
                                  message="Phone number must be entered in the format: '+0000000000'")
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
-    address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='דימונה')
+    address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='BeerSheba')
+    rating = models.CharField(max_length=10, choices=Rating_CHOICES, default='good')
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -75,6 +81,7 @@ class Comment(models.Model):
 class Message(models.Model):
     email = models.EmailField(max_length=254)
     message = models.TextField(max_length=300)
+
 
 # add feedback fileds
 class Feedback(models.Model):
