@@ -52,7 +52,7 @@ def profile(request, username):
             return redirect(url)
 
     else:
-        if username == request.user.username:
+        if username == request.user.username or 'admin' == request.user.username:
             u_form = UpdateUserForm(instance=request.user)
             p_form = UpdateProfileForm(instance=request.user.profile)
             post_form = CreatePost()
