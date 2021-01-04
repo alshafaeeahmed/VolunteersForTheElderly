@@ -47,7 +47,12 @@ def profile(request, username):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your Profile has been updated!')
+            target_user = User.objects.get(username=username)
+            target_profile = Profile.objects.get(user=target_user)
+            if not getattr(target_profile, 'is_active'):
+                target_user.delete()
+                target_profile.delete()
+                return HttpResponseRedirect('/')
             url = reverse('profile', kwargs={'username': username})
             return redirect(url)
 
