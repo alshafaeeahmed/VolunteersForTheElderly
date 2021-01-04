@@ -3,12 +3,26 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 ADDRESS_CHOICES = (
-    ('BeerSheba', 'BEERSHEBA'),
-    ('TelAviv', 'TELAVIV'),
+    ('BeerSheba', 'באר שבע'),
+    ('TelAviv', 'תל אביב'),
+    ('Ashdod','אשדוד'),
+    ('Jerusalem','ירושלים'),
+    ('Haifa','חיפה'),
+    ('Jaffa','יפו'),
+    ('Acre','עכו'),
+    ('Nazareth','נצרת'),
+    ('Lod','לוד'),
+    ('Arad','ערד'),
+    ('Dimona','דימונה'),
+    ('Rishon Lezion','רישון לציון'),
+    ('Ashkelon','אשקלון')
+
+
+
 )
 GENDER_CHOICES = (
-    ('Male', 'MALE'),
-    ('Female', 'FEMALE'),
+    ('Male', 'זכר'),
+    ('Female', 'נקבה'),
 )
 
 
@@ -21,7 +35,7 @@ class Profile(models.Model):
                                  message="Phone number must be entered in the format: '+0000000000'")
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
-    address = models.CharField(max_length=10, choices=ADDRESS_CHOICES, default='BeerSheba')
+    address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='דימונה')
 
     def __str__(self):
         return f'{self.user.username} Profile'
