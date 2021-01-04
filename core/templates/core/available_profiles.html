@@ -82,6 +82,8 @@
                             </li>
                             <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
                             </li>
+                            <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנבים הזמינים</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
                             </li>
@@ -101,37 +103,10 @@
         <div class="my-3 my-md-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-2">
-
-                    </div>
-
-                    <div class="col-lg-4">
+                    <div class="col-lg-7">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">כל המבוגרים</h3>
-                            </div>
-                            <div class="card-body">
-                                {%for elderly in all_elderly%}
-                                <div class="row">
-                                    <div class="col">
-                                        <a class="text-default"
-                                           href="{%url 'profile' elderly.user.username%}"><label
-                                                class="form-label">{{elderly.user.username}}</label></a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="text-default"><label
-                                                class="form-label">{{elderly.address}}</label></a>
-                                    </div>
-                                </div>
-                                {%endfor%}
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">כל המשגיחים</h3>
+                                <h3 class="card-title">כל המשגיחים הזמינים כרגע </h3>
                             </div>
                             <div class="card-body">
                                 {%for volunteer in all_volunteers%}
@@ -143,7 +118,7 @@
                                     </div>
                                     <div class="col">
                                         <a class="text-default"><label
-                                                class="form-label">{{volunteer.address}}</label></a>
+                                                class="form-label">{{volunteer.status_info}}</label></a>
                                     </div>
                                 </div>
                                 {%endfor%}

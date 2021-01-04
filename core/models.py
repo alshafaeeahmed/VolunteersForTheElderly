@@ -22,6 +22,10 @@ GENDER_CHOICES = (
     ('Male', 'זכר'),
     ('Female', 'נקבה'),
 )
+Status_Info_CHOICES = (
+    ('זמין', 'זמין'),
+    ('לא זמין', 'לא זמין'),
+)
 Rating_CHOICES = (
     ('טוב', 'טוב'),
     ('בסדר', 'בסדר'),
@@ -34,7 +38,7 @@ Rating_CHOICES = (
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
-    status_info = models.CharField(default="Enter status", max_length=1000)
+    status_info = models.CharField(max_length=10, choices=Status_Info_CHOICES, default='זמין')
     is_volunteer = models.BooleanField(default=False)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,10}$',
                                  message="Phone number must be entered in the format: '+0000000000'")

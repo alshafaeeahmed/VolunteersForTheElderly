@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^$', views.index, name='core/home'),
     url(r'^contact/$', views.contact, name='core/contact'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
+    url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),
     path('', user_views.feed, name='home'),
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),

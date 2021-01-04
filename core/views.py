@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
-from .forms import FeedbackForm
+
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm
 from .models import User, Post, Profile
 
@@ -16,6 +16,13 @@ def get_all_volunteers():
         if getattr(user_item, "is_volunteer"):
             result.append(user_item)
     return result
+
+
+# Return all volunteers who are available in the system
+def get_all_available_volunteers(request):
+    context = {}
+    context.update({'all_volunteers': get_all_volunteers()})
+    return render(request, 'core/available_profiles.html', context)
 
 
 def get_all_elderly():
@@ -80,8 +87,8 @@ def profile(request, username):
         context.update({'comment_form': comment_form})
         context.update({'all_volunteers': get_all_volunteers()})
         context.update({'all_elderly': get_all_elderly()})
-
-    return render(request, 'core/profile.html', context)
+        context.update({'available_volunteers': get_all_available_volunteers(request)})
+    return render(request,'core/profile.html', context)
 
 
 class UserFormView(View):
@@ -195,6 +202,7 @@ def get_all_profiles(request):
     context.update({'all_volunteers': get_all_volunteers()})
     context.update({'all_elderly': get_all_elderly()})
     return render(request, 'core/profiles_table.html', context)
+
 
 # print(User.objects)
 # print(User.objects.get(username="ahmed"))
