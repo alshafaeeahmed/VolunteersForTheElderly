@@ -84,26 +84,26 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
                             </li>
-
-
                             <li class="nav-item">
-                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק</a>
+                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק </a>
                             </li>
-                            <a class="nav-link" href="/contact/"><i class="fa fa-phone"></i>צור קשר</a>
-                            </li>
-                            <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
+                             <li class="nav-item">
+                                <a class="nav-link" href="/contact/"><i class="fa fa-phone"></i> צור קשר </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed</a>
+                                <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'feed'%}"><i class="fa fa-sign-out"></i> Feed </a>
                             </li>
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i>בקשה דחופה</a>
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i> בקשה דחופה </a>
                             </li>
                             {%endif%}
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-calendar" aria-hidden="true"></i>הצגת רשימת מבוגרים יומית </a>
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-calendar" aria-hidden="true"></i> הצגת רשימת מבוגרים יומית </a>
                             </li>
                             {%endif%}
                             {% if person.profile.is_volunteer %}
@@ -353,6 +353,7 @@
                                                     <div class="media-body">
                                                         <strong>{{comment.user.username}}: </strong>
                                                         {{comment.comment_text}}
+                                                        <button class="btn Like"><i class="fa fa-thumbs-up"></i>Like</button>
                                                     </div>
                                                 </li>
                                                 {%endfor%}

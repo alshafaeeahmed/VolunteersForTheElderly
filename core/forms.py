@@ -3,7 +3,7 @@ from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Profile, Post, Comment
+from .models import Profile, Post, Comment, Feedback
 
 
 class UserForm(forms.ModelForm):
@@ -63,3 +63,9 @@ class urgent_request(forms.Form):
 
     email = forms.EmailField(max_length=254)
     message = forms.CharField(max_length=254, widget=forms.Textarea)
+
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = '__all__'

@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
-
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm
+from .forms import FeedbackForm
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm
 from .models import User, Post, Profile
 
 
@@ -198,3 +198,22 @@ def get_all_profiles(request):
 
 # print(User.objects)
 # print(User.objects.get(username="ahmed"))
+def feedback(request):
+    if request.method == 'POST':
+        f = FeedbackForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.add_message(request, messages.INFO, 'Feedback Submitted.')
+            return redirect('feedback')
+    else:
+        f = FeedbackForm()
+    return render(request, 'core/feedback.html', {'form': f})
+
+
+class Category(object):
+    pass
+
+
+def test_redirect():
+    c = Category.objects.get(name='python')
+    return redirect(c)

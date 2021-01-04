@@ -7,7 +7,6 @@ from django.urls import path, include
 from core import views as user_views
 from core import views
 
-
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
     url(r'^contact/$', views.contact, name='core/contact'),
@@ -25,7 +24,9 @@ urlpatterns = [
     url(r'^create_post/(?P<username>\w+)/$', user_views.create_post, name="create_post"),
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
     path('feed/', user_views.feed, name="feed"),
-    url(r'^urgent_request/$', views.urgent_request, name='core/urgent_request'),
+    # url(r'^urgent_request/$', views.urgent_request, name='core/urgent_request'),
+    url('feedback/', views.feedback, name='core/feedback'),
+    url(r'^blog/$', views.test_redirect, name='test_redirect')
 ]
 
 if settings.DEBUG:
