@@ -57,6 +57,10 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     post_text = models.CharField(max_length=2000)
     post_picture = models.FileField(default="default.jpg", upload_to='post_picture')
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
+
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 class Following(models.Model):

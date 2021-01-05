@@ -27,7 +27,8 @@ urlpatterns = [
     path('feed/', user_views.feed, name="feed"),
     # url(r'^urgent_request/$', views.urgent_request, name='core/urgent_request'),
     url('feedback/', views.feedback, name='core/feedback'),
-    url(r'^blog/$', views.test_redirect, name='test_redirect')
+    url(r'^blog/$', views.test_redirect, name='test_redirect'),
+    path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
 ]
 
 if settings.DEBUG:

@@ -4,10 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import View
-
+from django.views.generic import View, DetailView
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm
 from .models import User, Post, Profile
+from django.shortcuts import get_object_or_404  # ss
+from django.http import HttpResponseRedirect  # sss
 
 
 def get_all_volunteers():
@@ -161,6 +162,16 @@ def create_post(request, username):
             messages.success(request, f'You have successfully posted!')
     url = reverse('profile', kwargs={'username': username})
     return redirect(url)
+
+
+def BlogPostLike(request, pk):
+    post = get_object_or_404(create_post, id=request.POST.get('blogpost_id'))
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('core/profile.html', args=[str(pk)]))
 
 
 def create_comment(request, username, post_id):
