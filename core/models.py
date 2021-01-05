@@ -19,8 +19,8 @@ ADDRESS_CHOICES = (
 
 )
 GENDER_CHOICES = (
-    ('Male', 'זכר'),
-    ('Female', 'נקבה'),
+    ('זכר', 'זכר'),
+    ('נקבה', 'נקבה'),
 )
 Status_Info_CHOICES = (
     ('זמין', 'זמין'),
@@ -44,7 +44,7 @@ class Profile(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,10}$',
                                  message="Phone number must be entered in the format: '+0000000000'")
     phone_number = models.CharField(validators=[phone_regex], max_length=10, blank=True)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='זכר')
     address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='BeerSheba')
     rating = models.CharField(max_length=10, choices=Rating_CHOICES, default='good')
 

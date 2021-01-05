@@ -26,6 +26,12 @@ def get_all_available_volunteers(request):
     context.update({'all_volunteers': get_all_volunteers()})
     return render(request, 'core/available_profiles.html', context)
 
+# Return all volunteers genders
+def get_all_volunteers_gender(request):
+    context = {}
+    context.update({'all_volunteers': get_all_volunteers()})
+    return render(request, 'core/profiles_gender.html', context)
+
 
 def get_all_elderly():
     result = list()
@@ -95,6 +101,7 @@ def profile(request, username):
         context.update({'all_volunteers': get_all_volunteers()})
         context.update({'all_elderly': get_all_elderly()})
         context.update({'available_volunteers': get_all_available_volunteers(request)})
+        context.update({'volunteers_gender': get_all_volunteers_gender(request)})
     return render(request, 'core/profile.html', context)
 
 
