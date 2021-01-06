@@ -26,6 +26,7 @@ def get_all_available_volunteers(request):
     context.update({'all_volunteers': get_all_volunteers()})
     return render(request, 'core/available_profiles.html', context)
 
+
 # Return all volunteers genders
 def get_all_volunteers_gender(request):
     context = {}
@@ -213,14 +214,6 @@ def contact(request):
     })
 
 
-def urgent_request(request):
-    urgent_request_class = ContactForm
-
-    return render(request, 'core/urgent_request.html', {
-        'form': urgent_request_class,
-    })
-
-
 def get_all_profiles(request):
     context = {}
     context.update({'all_volunteers': get_all_volunteers()})
@@ -240,6 +233,18 @@ def feedback(request):
     else:
         f = FeedbackForm()
     return render(request, 'core/feedback.html', {'form': f})
+
+
+def UrgentRequest(request):
+    if request.method == 'POST':
+        f = FeedbackForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.add_message(request, messages.INFO, 'הבקשה שלך נשלך למנהל האתר !.')
+            return redirect('UrgentRequest')
+    else:
+        f = FeedbackForm()
+    return render(request, 'core/urgent_request.html', {'form': f})
 
 
 class Category(object):
