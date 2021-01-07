@@ -33,6 +33,72 @@
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
     <script src="./assets/js/dashboard.js"></script>
     <!-- c3.js Charts Plugin -->
+    <body>
+<div class="page">
+    <div class="page-main">
+        <div class="header py-4">
+            <div class="container">
+                <div class="d-flex">
+                    <a type="button" class="btn btn-info" href="{%url 'home'%}">הדף הראשי</a>
+                    <div class="d-flex order-lg-2 ml-auto">
+                        <div class="dropdown">
+                            <a class="nav-link pr-0 leading-none" data-toggle="dropdown"
+                               href="{%url 'profile' user.username%}">
+                                <span class="avatar"
+                                      style="background-image: url({{user.profile.profile_photo.url}})"></span>
+                                <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default">{{user.username}}</span>
+                      <small class="text-muted d-block mt-1">Your Account</small>
+                    </span>
+                            </a>
+
+                        </div>
+                    </div>
+                    <a class="header-toggler d-lg-none ml-3 ml-lg-0" data-target="#headerMenuCollapse"
+                       data-toggle="collapse"
+                       href="#">
+                        <span class="header-toggler-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-lg order-lg-first">
+                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
+                            </li>
+                            {% if not person.profile.is_volunteer %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i> בקשה דחופה </a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנדבים הזמינים</a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="/profiles_gender/"><i class="fa fa-phone"></i>בחירת מין המתנדב</a>
+                            </li>
+                            <li class="nav-item">
+                                   <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>מצב תחזוקה</a>
+                                </li>
+                            {%endif%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="content_us">
             <div class="section-inner clearfix">
                 <h3>בבקשה תמלא את הפרטים על מנת לצור איתנו קשר</h3>
@@ -44,6 +110,7 @@
                             <td></td>
                             <td><input type="submit" value="Submit"></td>
                         </tr>
+
                     </table>
                 </form>
 
