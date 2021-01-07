@@ -7,8 +7,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
 
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm, \
-    PageUpdate, Contact_UsForm
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment,\
+    PageUpdate, Contact_UsForm, UrgentRequestForm
 from .models import User, Post, Profile
 
 
@@ -234,29 +234,15 @@ def get_all_profiles(request):
     return render(request, 'core/profiles_table.html', context)
 
 
-# print(User.objects)
-# print(User.objects.get(username="ahmed"))
-def feedback(request):
-    if request.method == 'POST':
-        f = FeedbackForm(request.POST)
-        if f.is_valid():
-            f.save()
-            messages.add_message(request, messages.INFO, 'Feedback Submitted.')
-            return redirect('feedback')
-    else:
-        f = FeedbackForm()
-    return render(request, 'core/feedback.html', {'form': f})
-
-
 def UrgentRequest(request):
     if request.method == 'POST':
-        f = FeedbackForm(request.POST)
+        f = UrgentRequestForm(request.POST)
         if f.is_valid():
             f.save()
             messages.add_message(request, messages.INFO, 'הבקשה שלך נשלך למנהל האתר !.')
             return redirect('UrgentRequest')
     else:
-        f = FeedbackForm()
+        f = UrgentRequestForm()
     return render(request, 'core/urgent_request.html', {'form': f})
 
 
