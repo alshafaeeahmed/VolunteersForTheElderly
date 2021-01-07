@@ -114,11 +114,28 @@ class Feedback(models.Model):
     class Meta:
         verbose_name_plural = "Feedback"
 
+    def __str__(self):
+        return self.name + "-" + self.email
+
+
+# add feedback fileds
+class contact_us(models.Model):
+    name = models.CharField(max_length=200, help_text="Name of the sender")
+    email = models.EmailField(max_length=200)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "contact_us"
+
+    def __str__(self):
+        return self.name + "-" + self.email
+
 
 # add urgent_request fileds
 class UrgentRequest(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
-    email = models.EmailField(max_length=200)
     subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)

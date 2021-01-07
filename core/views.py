@@ -1,15 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect  # sss
+from django.shortcuts import get_object_or_404  # ss
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import View, DetailView
+from django.views.generic import View
+
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm, \
-    PageUpdate
+    PageUpdate, Contact_UsForm
 from .models import User, Post, Profile
-from django.shortcuts import get_object_or_404  # ss
-from django.http import HttpResponseRedirect  # sss
 
 
 def get_all_volunteers():
@@ -210,9 +210,10 @@ def feed(request):
 def contact(request):
     form_class = ContactForm
 
-    return render(request, 'core/contact.html', {
+    return render(request, 'core/contact_us.html', {
         'form': form_class,
     })
+
 
 def PageUpdate(request):
     if request.method == 'POST':
@@ -224,6 +225,7 @@ def PageUpdate(request):
     else:
         f = PageUpdate()
     return render(request, 'core/updates.html', {'form': f})
+
 
 def get_all_profiles(request):
     context = {}
@@ -256,6 +258,18 @@ def UrgentRequest(request):
     else:
         f = FeedbackForm()
     return render(request, 'core/urgent_request.html', {'form': f})
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        f = Contact_UsForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.add_message(request, messages.INFO, 'הבקשה שלך נשלך למנהל האתר !.')
+            return redirect('contact_us')
+    else:
+        f = Contact_UsForm()
+    return render(request, 'core/contact_us.html', {'form': f})
 
 
 class Category(object):

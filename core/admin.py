@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from . import models
-from .models import Profile, Following, Follower, Post, Comment, PageUpdate
+from .models import Profile, Following, Follower, Post, Comment
 
 
 # Adding Feedback Model to Django Admin
@@ -11,14 +11,16 @@ class FeedbackAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
 
 
-class UrgentRequestAdmin(admin.ModelAdmin):
+# Adding Feedback Model to Django Admin
+class Contact_UsAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'date',)
     search_fields = ('name', 'email',)
     date_hierarchy = 'date'
 
-class PageUpdateAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'date',)
-    search_fields = ('subject',)
+
+class UrgentRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'subject', 'date',)
+    search_fields = ('name',)
     date_hierarchy = 'date'
 
 
@@ -27,8 +29,6 @@ admin.site.register(Follower)
 admin.site.register(Following)
 admin.site.register(Post)
 admin.site.register(Comment)
-admin.site.register(PageUpdate)
 admin.site.register(models.Feedback, FeedbackAdmin)
 admin.site.register(models.UrgentRequest, UrgentRequestAdmin)
-
-
+admin.site.register(models.contact_us, Contact_UsAdmin)
