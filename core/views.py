@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View
 
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment,\
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, \
     PageUpdate, Contact_UsForm, UrgentRequestForm
 from .models import User, Post, Profile
 
@@ -210,6 +210,13 @@ def PageUpdate(request):
     form_class = PageUpdate
 
     return render(request, 'core/updates.html', {
+        'form': form_class,
+    })
+
+
+def Site_info(request):
+    form_class = Site_info
+    return render(request, 'core/site_info.html', {
         'form': form_class,
     })
 

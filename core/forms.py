@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, contact_us
+from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, contact_us, Site_Info
 
 
 class UserForm(forms.ModelForm):
@@ -44,6 +44,12 @@ class CreateComment(forms.ModelForm):
 class PageUpdate(forms.ModelForm):
     class Meta:
         model = PageUpdate
+        fields = '__all__'
+
+
+class Site_Info(forms.ModelForm):
+    class Meta:
+        model = Site_Info
         fields = '__all__'
 
 
