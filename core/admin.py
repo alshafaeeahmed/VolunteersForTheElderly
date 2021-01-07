@@ -12,8 +12,8 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 
 class UrgentRequestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'subject', 'date',)
-    search_fields = ('name', 'email',)
+    list_display = ('name', 'subject', 'date',)
+    search_fields = ('name', )
     date_hierarchy = 'date'
 
 class PageUpdateAdmin(admin.ModelAdmin):
@@ -27,7 +27,7 @@ admin.site.register(Follower)
 admin.site.register(Following)
 admin.site.register(Post)
 admin.site.register(Comment)
-admin.site.register(models.PageUpdate,PageUpdateAdmin)
+admin.site.register(models.PageUpdate, PageUpdateAdmin)
 admin.site.register(models.UrgentRequest, UrgentRequestAdmin)
 
 

@@ -73,25 +73,28 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
                             </li>
-
-
                             <li class="nav-item">
-                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק</a>
+                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק </a>
                             </li>
-                            <a class="nav-link" href="/contact/"><i class="fa fa-phone"></i>צור קשר</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
                             </li>
-                            <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
                             </li>
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i>בקשה דחופה</a>
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i> בקשה דחופה </a>
                             </li>
                             <li class="nav-item">
-                               <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנבים הזמינים</a>
+                               <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנדבים הזמינים</a>
                             </li>
                             <li class="nav-item">
                                <a class="nav-link" href="/profiles_gender/"><i class="fa fa-phone"></i>בחירת מין המתנדב</a>
                             </li>
+                            <li class="nav-item">
+                                   <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>מצב תחזוקה</a>
+                                </li>
                             {%endif%}
 
 

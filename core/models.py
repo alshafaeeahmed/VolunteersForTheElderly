@@ -96,7 +96,7 @@ class Comment(models.Model):
     comment_text = models.CharField(default="Enter Comment Here", max_length=2000)
 
 
-# for urgent recquest page
+# for urgent request page
 
 class Message(models.Model):
     email = models.EmailField(max_length=254)
