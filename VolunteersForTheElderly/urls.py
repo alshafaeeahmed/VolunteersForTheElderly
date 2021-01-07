@@ -9,12 +9,12 @@ from core import views
 
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
-    url(r'^contact/$', views.contact, name='core/contact'),
+    path('homepage/', user_views.feed, name='home'),
+    url(r'^contact_us/$', views.contact_us, name='core/contact_us'),
     url(r'^updates/$', views.PageUpdate, name='core/updates'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
     url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),
     url(r'^profiles_gender/$', views.get_all_volunteers_gender, name='core/profiles_gender.html'),
-    path('', user_views.feed, name='home'),
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
@@ -28,7 +28,6 @@ urlpatterns = [
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
     path('feed/', user_views.feed, name="feed"),
     url(r'^urgent_request/$', views.UrgentRequest, name='core/urgent_request'),
-    url('feedback/', views.feedback, name='core/feedback'),
     url(r'^blog/$', views.test_redirect, name='test_redirect'),
     path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
 ]

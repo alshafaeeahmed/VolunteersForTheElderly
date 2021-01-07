@@ -1,9 +1,7 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Profile, Post, Comment, Feedback, UrgentRequest, PageUpdate
+from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, contact_us
 
 
 class UserForm(forms.ModelForm):
@@ -15,7 +13,7 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'email', 'password']
 
 
-# bild the user form
+# the user form
 class UpdateUserForm(forms.ModelForm):
     email = forms.EmailField(max_length=254, help_text='Required field')
 
@@ -42,24 +40,16 @@ class CreateComment(forms.ModelForm):
         model = Comment
         fields = ['comment_text']
 
-class PageUpdate(forms.ModelForm):
 
+class PageUpdate(forms.ModelForm):
     class Meta:
         model = PageUpdate
         fields = '__all__'
 
-class ContactForm(forms.Form):
-    contact_name = forms.CharField(required=True)
-    contact_email = forms.EmailField(required=True)
-    content = forms.CharField(
-        required=True,
-        widget=forms.Textarea
-    )
 
-
-class FeedbackForm(forms.ModelForm):
+class Contact_UsForm(forms.ModelForm):
     class Meta:
-        model = Feedback
+        model = contact_us
         fields = '__all__'
 
 

@@ -103,8 +103,8 @@ class Message(models.Model):
     message = models.TextField(max_length=300)
 
 
-# add feedback fileds
-class Feedback(models.Model):
+# add contact fileds
+class contact_us(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
     email = models.EmailField(max_length=200)
     subject = models.CharField(max_length=200)
@@ -112,13 +112,15 @@ class Feedback(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "Feedback"
+        verbose_name_plural = "contact_us"
+
+    def __str__(self):
+        return self.name + "-" + self.email
 
 
 # add urgent_request fileds
 class UrgentRequest(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
-    email = models.EmailField(max_length=200)
     subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
