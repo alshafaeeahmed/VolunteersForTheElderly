@@ -5,7 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View, DetailView
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm, \
+    PageUpdate
 from .models import User, Post, Profile
 from django.shortcuts import get_object_or_404  # ss
 from django.http import HttpResponseRedirect  # sss
@@ -213,6 +214,16 @@ def contact(request):
         'form': form_class,
     })
 
+def PageUpdate(request):
+    if request.method == 'POST':
+        f = PageUpdate(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.add_message(request, messages.INFO, 'Update Submitted.')
+            return redirect('Update')
+    else:
+        f = PageUpdate()
+    return render(request, 'core/updates.html', {'form': f})
 
 def get_all_profiles(request):
     context = {}

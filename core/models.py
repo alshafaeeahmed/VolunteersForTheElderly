@@ -52,6 +52,17 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
+class PageUpdate(models.Model):
+    subject = models.CharField(max_length=200)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "PageUpdate"
+
+    def __str__(self):
+        return self.subject
+
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -99,6 +110,7 @@ class Feedback(models.Model):
     subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         verbose_name_plural = "Feedback"
 

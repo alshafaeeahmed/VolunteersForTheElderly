@@ -10,6 +10,7 @@ from core import views
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
     url(r'^contact/$', views.contact, name='core/contact'),
+    url(r'^updates/$', views.PageUpdate, name='core/updates'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
     url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),
     url(r'^profiles_gender/$', views.get_all_volunteers_gender, name='core/profiles_gender.html'),
