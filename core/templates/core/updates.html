@@ -93,21 +93,34 @@
                             <li class="nav-item">
                                <a class="nav-link" href="/profiles_gender/"><i class="fa fa-phone"></i>בחירת מין המתנדב</a>
                             </li>
-                            <li class="nav-item">
-                               <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>מצב תחזוקה</a>
-                            </li>
+
+                                <li class="nav-item">
+                                   <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>מצב תחזוקה</a>
+                                </li>
+
+
                             {%endif%}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="my-3 my-md-5">
+        <div class="my-9 my-md-9">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         <div class="card card-profile">
-                            <div class="card-header"
+                            <br/><br/><br/><br/><br/><br/><br/><br/>
+                            <script language="javascript" type="text/javascript">
+                            if ('{{user.username}}' == 'admin') {
+                                document.write( '<input type=\"text\" name=\"username\" maxlength=\"150\" required=\"\" id=\"id_username\">' );
+                                document.write( '<br/>' );
+                                document.write( '<button class=\"btn btn-primary btn-block\" name=\"Update\" type=\"submit\">Add</button>' );
+                            }
+                            </script>
 
+
+
+</div></div></div></div></div></div></div>
 </body>
 </html>

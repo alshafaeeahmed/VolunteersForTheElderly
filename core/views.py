@@ -214,16 +214,29 @@ def contact(request):
         'form': form_class,
     })
 
+def get_all_PageUpdate():
+    result = list()
+    update = Profile.objects.all()
+    print(update)
+    for user_item in update:
+            result.append(user_item)
+    return result
+
+
+    update = Profile.objects.all()
+    print(update=profile)
+
+
 def PageUpdate(request):
-    if request.method == 'POST':
-        f = PageUpdate(request.POST)
-        if f.is_valid():
-            f.save()
-            messages.add_message(request, messages.INFO, 'Update Submitted.')
-            return redirect('Update')
-    else:
-        f = PageUpdate()
-    return render(request, 'core/updates.html', {'form': f})
+    form_class = PageUpdate
+
+    return render(request, 'core/updates.html', {
+        'form': form_class,
+    })
+
+
+
+
 
 def get_all_profiles(request):
     context = {}
