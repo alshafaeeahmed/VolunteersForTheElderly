@@ -5,8 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import View, DetailView
-from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, ContactForm, FeedbackForm, \
-    PageUpdate
+from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, PageUpdate
 from .models import User, Post, Profile
 from django.shortcuts import get_object_or_404  # ss
 from django.http import HttpResponseRedirect  # sss
