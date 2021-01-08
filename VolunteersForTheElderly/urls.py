@@ -4,12 +4,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from core import views as user_views
+
 from core import views
+from core import views as user_views
 
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
     path('homepage/', user_views.feed, name='home'),
+    path('Thank/', views.Thanks, name='core/Thank.html'),
     url(r'^contact_us/$', views.contact_us, name='core/contact_us'),
     url(r'^updates/$', views.PageUpdate, name='core/updates'),
     url(r'^about/$', views.PageUpdate, name='core/site_info'),
@@ -29,7 +31,6 @@ urlpatterns = [
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
     path('feed/', user_views.feed, name="feed"),
     url(r'^urgent_request/$', views.UrgentRequest, name='core/urgent_request'),
-    url(r'^blog/$', views.test_redirect, name='test_redirect'),
     path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
 ]
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from . import models
-from .models import Profile, Following, Follower, Post, Comment
+from .models import Profile, Post, Comment
 
 
 # Adding Feedback Model to Django Admin
@@ -30,10 +30,7 @@ class Site_infoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile)
-admin.site.register(Follower)
-admin.site.register(Following)
 admin.site.register(Post)
-admin.site.register(Comment)
 admin.site.register(models.PageUpdate, PageUpdateAdmin)
 admin.site.register(models.Site_Info, Site_infoAdmin)
 admin.site.register(models.UrgentRequest, UrgentRequestAdmin)

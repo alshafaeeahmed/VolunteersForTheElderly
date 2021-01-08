@@ -48,6 +48,10 @@ def index(request):
     return render(request, 'core/index.html')
 
 
+def Thanks(request):
+    return render(request, 'core/Thank.html')
+
+
 @login_required
 def profile(request, username):
     if request.method == 'POST':
@@ -233,8 +237,8 @@ def UrgentRequest(request):
         f = UrgentRequestForm(request.POST)
         if f.is_valid():
             f.save()
-            messages.add_message(request, messages.INFO, 'הבקשה שלך נשלך למנהל האתר !.')
-            return redirect('UrgentRequest')
+            messages.add_message(request, messages.INFO, 'קיים בקשה דחופה חדשה')
+            return redirect('core/Thank.html')
     else:
         f = UrgentRequestForm()
     return render(request, 'core/urgent_request.html', {'form': f})
@@ -245,17 +249,8 @@ def contact_us(request):
         f = Contact_UsForm(request.POST)
         if f.is_valid():
             f.save()
-            messages.add_message(request, messages.INFO, 'הבקשה שלך נשלך למנהל האתר !.')
-            return redirect('contact_us')
+            messages.add_message(request, messages.INFO, 'קיים הודעה חדשה ביצירת קשר')
+            return redirect('core/Thank.html')
     else:
         f = Contact_UsForm()
     return render(request, 'core/contact_us.html', {'form': f})
-
-
-class Category(object):
-    pass
-
-
-def test_redirect():
-    c = Category.objects.get(name='python')
-    return redirect(c)
