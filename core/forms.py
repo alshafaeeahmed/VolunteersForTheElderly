@@ -27,6 +27,17 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['status_info', 'profile_photo', 'is_volunteer', 'phone_number', 'gender', 'address', 'rating',
                   'is_active']
+        labels = {
+            'post_text': 'תוכן סיכום',
+            'post_picture': 'תמונה',
+            'status_info': 'סטטוס',
+            'is_volunteer': 'הפוך למתנדב',
+            'phone_number': 'מספר טאלפון',
+            'gender': 'מין',
+            'address': 'כתובת',
+            'rating': 'דרוג',
+            'is_active': 'פעיל',
+        }
 
 
 class CreatePost(forms.ModelForm):
@@ -35,10 +46,15 @@ class CreatePost(forms.ModelForm):
         fields = ['post_text', 'post_picture']
 
 
+
 class CreateComment(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment_text']
+        labels = {
+            'comment_text': 'תגובה',
+
+        }
 
 
 class PageUpdate(forms.ModelForm):
@@ -56,10 +72,19 @@ class Site_Info(forms.ModelForm):
 class Contact_UsForm(forms.ModelForm):
     class Meta:
         model = contact_us
-        fields = '__all__'
+        fields = ['name', 'email', 'subject']
+        labels = {
+            'name': 'תוכן סיכום',
+            'email': 'אימייל',
+            'subject': 'נושא',
+        }
 
 
 class UrgentRequestForm(forms.ModelForm):
     class Meta:
         model = UrgentRequest
-        fields = '__all__'
+        fields = ['name','subject']
+        labels = {
+            'name': 'תוכן סיכום',
+            'subject': 'נושא',
+        }
