@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^updates/$', views.PageUpdate, name='core/updates'),
     url(r'^about/$', views.Site_info, name='core/site_info'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
+    url(r'^all_contact_us/$', views.get_contact_us, name='core/all_contact_us.html'),
     url(r'^all_UrgentRequests/$', views.get_UrgentRequests, name='core/all_urgent_request'),
     url(r'^all_contact_us/$', views.get_contact_us, name='core/all_contact_us.html'),
     url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),

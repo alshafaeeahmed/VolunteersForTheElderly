@@ -50,6 +50,20 @@ def get_UrgentRequests(request):
     return render(request, 'core/all_urgent_request.html', context)
 
 
+def all_contact_us():
+    result = list()
+    users_list = contact_us.objects.all()
+    for user_item in users_list:
+        result.append(user_item)
+    return result
+
+
+def get_contact_us(request):
+    context = {}
+    context.update({'all_contact_us': all_contact_us()})
+    return render(request, 'core/all_contact_us.html', context)
+
+
 # Return all volunteers who are available in the system
 def get_all_available_volunteers(request):
     context = {}
