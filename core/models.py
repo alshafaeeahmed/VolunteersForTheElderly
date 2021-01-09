@@ -40,6 +40,7 @@ class Profile(models.Model):
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
     status_info = models.CharField(max_length=10, choices=Status_Info_CHOICES, default='זמין')
     is_volunteer = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,10}$',
                                  message="Phone number must be entered in the format: '+0000000000'")
@@ -132,7 +133,6 @@ class contact_us(models.Model):
 # add urgent_request fileds
 class UrgentRequest(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
-    subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
