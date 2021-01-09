@@ -30,6 +30,7 @@
       });
 
 
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -113,15 +114,21 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">כל הבקשות </h3>
+                                <h3 class="card-title">כל הבקשות</h3>
                             </div>
                             <div class="card-body">
                                 {%for elderly in all_UrgentRequests%}
                                 <div class="row">
+                                        <div class="col">
+                                            <a
+                                               class="form-label">{{elderly.name }}
+                                            </a>
+                                        </div>
                                     <div class="col">
                                         <a class="text-default"
-                                           class="form-label">{{elderly.name }},{{elderly.message}}
-                                            {%endfor%}
-                                        </div>
+                                           class="form-label">{{elderly.message}}
+                                        </a>
+                                    </div>
+                                {%endfor%}
                                 </div>
                             </div>

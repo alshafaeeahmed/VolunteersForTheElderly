@@ -69,7 +69,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                        {% if profile.user.username == 'admin' %}
+
+                        {% if user.profile.is_admin %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
                             </li>

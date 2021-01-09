@@ -9,7 +9,7 @@ from django.views.generic import View
 
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, \
     PageUpdate, Contact_UsForm, UrgentRequestForm
-from .models import User, Profile, UrgentRequest
+from .models import User, Profile, UrgentRequest, Following, Follower
 
 
 def get_all_volunteers():
@@ -125,6 +125,8 @@ def profile(request, username):
         context.update({'volunteers_gender': get_all_available_volunteers(request)})
         context.update({'all_UrgentRequests': all_UrgentRequests()})
         context.update({'get_all_UrgentRequests': get_UrgentRequests(request)})
+        context.update({'my_followers': get_user_following(person)})
+        context.update({'my_following': get_user_follower(person)})
     return render(request, 'core/profile.html', context)
 
 
@@ -262,3 +264,25 @@ def contact_us(request):
     else:
         f = Contact_UsForm()
     return render(request, 'core/contact_us.html', {'form': f})
+
+
+def get_user_following(target_user):
+    result = list()
+    for following in Following.objects.filter(user=target_user):
+        try:
+            result.append(getattr(following, 'following_user'))
+        except:
+            pass
+    return result
+
+
+def get_user_follower(target_user):
+    result = list()
+    for follower in Follower.objects.filter(user=target_user):
+        try:
+            follower_user = User.objects.get(username=getattr(follower, 'follower_user'))
+            if getattr(Profile.objects.get(user=follower_user), 'is_volunteer'):
+                result.append(getattr(follower, 'follower_user'))
+        except:
+            pass
+    return result

@@ -40,6 +40,7 @@ class Profile(models.Model):
     profile_photo = models.FileField(default='default.jpg', upload_to='profile_photos')
     status_info = models.CharField(max_length=10, choices=Status_Info_CHOICES, default='זמין')
     is_volunteer = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,10}$',
                                  message="Phone number must be entered in the format: '+0000000000'")
@@ -47,6 +48,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='זכר')
     address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='BeerSheba')
     rating = models.CharField(max_length=10, choices=Rating_CHOICES, default='good')
+
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -90,7 +92,7 @@ class Following(models.Model):
     following_user = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.following_user.username
+        return self.following_user
 
 
 class Follower(models.Model):
@@ -98,7 +100,7 @@ class Follower(models.Model):
     follower_user = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.follower_user.username
+        return self.follower_user
 
 
 class Comment(models.Model):
@@ -132,7 +134,6 @@ class contact_us(models.Model):
 # add urgent_request fileds
 class UrgentRequest(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
-    subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
