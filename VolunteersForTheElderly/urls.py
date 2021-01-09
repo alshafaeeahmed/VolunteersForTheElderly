@@ -10,12 +10,13 @@ from core import views as user_views
 
 urlpatterns = [
     url(r'^$', views.index, name='core/home'),
-    path('homepage/', user_views.feed, name='home'),
+    path('homepage/', user_views.index, name='home'),
     path('Thank/', views.Thanks, name='core/Thank.html'),
     url(r'^contact_us/$', views.contact_us, name='core/contact_us'),
     url(r'^updates/$', views.PageUpdate, name='core/updates'),
     url(r'^about/$', views.PageUpdate, name='core/site_info'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
+    url(r'^all_UrgentRequests/$', views.get_UrgentRequests, name='core/all_urgent_request'),
     url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),
     url(r'^profiles_gender/$', views.get_all_volunteers_gender, name='core/profiles_gender.html'),
     path('admin/', admin.site.urls),
@@ -29,8 +30,7 @@ urlpatterns = [
     url(r'^unfollow_elderly/(?P<username>\w+)/$', user_views.unfollow_elderly, name="unfollow_elderly"),
     url(r'^create_post/(?P<username>\w+)/$', user_views.create_post, name="create_post"),
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
-    path('feed/', user_views.feed, name="feed"),
-    url(r'^urgent_request/$', views.UrgentRequest, name='core/urgent_request'),
+    url(r'^urgent_request/$', views.Urgent_Request, name='core/urgent_request'),
     path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
 ]
 
