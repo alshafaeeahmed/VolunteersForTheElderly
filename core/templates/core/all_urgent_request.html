@@ -28,6 +28,9 @@
       requirejs.config({
           baseUrl: '.'
       });
+
+
+
     </script>
     <!-- Dashboard Core -->
     <link href="{%static 'core/dashboard.css'%}" rel="stylesheet"/>
@@ -67,87 +70,65 @@
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
             <div class="container">
                 <div class="row align-items-center">
+
                     <div class="col-lg order-lg-first">
                         <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-
-                        {% if user.profile.is_admin %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'home'%}"><i class="fa fa-home"></i> דף בית</a>
                             </li>
-                        {% endif %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק</a>
+                                <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק </a>
                             </li>
-                            <a class="nav-link" href="/contact_us/"><i class="fa fa-phone"></i>צור קשר</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
                             </li>
-                            <a class="nav-link" href="/all_profiles/"><i class="fa fa-phone"></i>כל המשתמשים</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
                             </li>
+                            {% if not person.profile.is_volunteer %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i> בקשה דחופה </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/available_profiles/"><i class="fa fa-phone"></i>המתנדבים
+                                    הזמינים</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profiles_gender/"><i class="fa fa-phone"></i>בחירת מין המתנדב</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>מצב תחזוקה</a>
+                            </li>
+                            {%endif%}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="my-3 my-md-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2">
 
                     </div>
-
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">כל המבוגרים</h3>
+                                <h3 class="card-title">כל הבקשות</h3>
                             </div>
                             <div class="card-body">
-                                {%for elderly in all_elderly%}
+                                {%for elderly in all_UrgentRequests%}
                                 <div class="row">
+                                        <div class="col">
+                                            <a
+                                               class="form-label">{{elderly.name }}
+                                            </a>
+                                        </div>
                                     <div class="col">
                                         <a class="text-default"
-                                           href="{%url 'profile' elderly.user.username%}"><label
-                                                class="form-label">{{elderly.user.username}}</label></a>
+                                           class="form-label">{{elderly.message}}
+                                        </a>
                                     </div>
-                                    <div class="col">
-                                        <a class="text-default"><label
-                                                class="form-label">{{elderly.address}}</label></a>
-                                    </div>
-                                </div>
                                 {%endfor%}
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">כל המשגיחים</h3>
-                            </div>
-                            <div class="card-body">
-                                {%for volunteer in all_volunteers%}
-                                <div class="row">
-                                    <div class="col">
-                                        <a class="text-default"
-                                           href="{%url 'profile' volunteer.user.username%}"><label
-                                                class="form-label">{{volunteer.user.username}}</label></a>
-                                    </div>
-                                    <div class="col">
-                                        <a class="text-default"><label
-                                                class="form-label">{{volunteer.address}}</label></a>
-                                    </div>
                                 </div>
-                                {%endfor%}
                             </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-2">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>

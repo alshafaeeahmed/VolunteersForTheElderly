@@ -83,6 +83,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_UrgentRequests/"><i class="fa fa-users"></i> כל הבקשות </a>
+                            </li>
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/urgent_request/"><i class="fa fa-flag-o"></i> בקשה דחופה </a>
@@ -125,7 +128,6 @@
                                 <form action="{% url 'follow_elderly' person.username%}" enctype="multipart/form-data"
                                       method="POST">
                                     {%csrf_token%}
-
                                     <button class="btn btn-outline-primary btn-sm">
                                         <span class="fa fa-user"></span> התחל להשגחה
                                     </button>
@@ -201,15 +203,15 @@
                                 <h3 class="card-title">רשימת המבוגרים </h3>
                             </div>
                             <div class="card-body">
-                                {%for followers in person.follower_set.all%}
+                                {%for followers in my_followers%}
 
                                 <div class="row">
 
                                     <div class="col">
                                         <div class="form-group">
                                             <a class="text-default"
-                                               href="{%url 'profile' followers.follower_user%}"><label
-                                                    class="form-label">{{followers.follower_user}}</label></a>
+                                               href="{%url 'profile' followers%}"><label
+                                                    class="form-label">{{followers}}</label></a>
 
                                         </div>
                                     </div>
@@ -217,7 +219,6 @@
 
                                 {%endfor%}
                             </div>
-
                         </div>
                         <div class="card">
                             <div class="card-header">
@@ -246,15 +247,14 @@
                             </div>
                             <div class="card-body">
 
-                                {%for following in person.following_set.all%}
+                                {%for following in my_following%}
 
                                 <div class="row">
-
                                     <div class="col">
                                         <div class="form-group">
                                             <a class="text-default"
-                                               href="{%url 'profile' following.following_user%}"><label
-                                                    class="form-label">{{following.following_user}}</label></a>
+                                               href="{%url 'profile' following%}"><label
+                                                    class="form-label">{{following}}</label></a>
                                         </div>
                                     </div>
                                 </div>

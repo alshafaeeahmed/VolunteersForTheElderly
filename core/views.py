@@ -9,7 +9,7 @@ from django.views.generic import View
 
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, \
     PageUpdate, Contact_UsForm, UrgentRequestForm
-from .models import User, Post, Profile
+from .models import User, Profile, UrgentRequest, Following, Follower
 
 
 def get_all_volunteers():
@@ -19,6 +19,21 @@ def get_all_volunteers():
         if getattr(user_item, "is_volunteer"):
             result.append(user_item)
     return result
+
+
+# return the Urgent Requests from the data base
+def all_UrgentRequests():
+    result = list()
+    users_list = UrgentRequest.objects.all()
+    for user_item in users_list:
+        result.append(user_item)
+    return result
+
+
+def get_UrgentRequests(request):
+    context = {}
+    context.update({'all_UrgentRequests': all_UrgentRequests()})
+    return render(request, 'core/all_urgent_request.html', context)
 
 
 # Return all volunteers who are available in the system
@@ -107,7 +122,11 @@ def profile(request, username):
         context.update({'all_volunteers': get_all_volunteers()})
         context.update({'all_elderly': get_all_elderly()})
         context.update({'available_volunteers': get_all_available_volunteers(request)})
-        context.update({'volunteers_gender': get_all_volunteers_gender(request)})
+        context.update({'volunteers_gender': get_all_available_volunteers(request)})
+        context.update({'all_UrgentRequests': all_UrgentRequests()})
+        context.update({'get_all_UrgentRequests': get_UrgentRequests(request)})
+        context.update({'my_followers': get_user_following(person)})
+        context.update({'my_following': get_user_follower(person)})
     return render(request, 'core/profile.html', context)
 
 
@@ -177,6 +196,7 @@ def create_post(request, username):
     return redirect(url)
 
 
+# like in the comment
 def BlogPostLike(request, pk):
     post = get_object_or_404(create_post, id=request.POST.get('blogpost_id'))
     if post.likes.filter(id=request.user.id).exists():
@@ -198,16 +218,6 @@ def create_comment(request, username, post_id):
             messages.success(request, f'Your Comment has been posted')
     url = reverse('profile', kwargs={'username': username})
     return redirect(url)
-
-
-def feed(request):
-    post_all = Post.objects.order_by('created_at').reverse()
-    comment_form = CreateComment()
-    context = {
-        'post_all': post_all,
-        'comment_form': comment_form,
-    }
-    return render(request, 'core/index.html', context)
 
 
 def PageUpdate(request):
@@ -232,7 +242,7 @@ def get_all_profiles(request):
     return render(request, 'core/profiles_table.html', context)
 
 
-def UrgentRequest(request):
+def Urgent_Request(request):
     if request.method == 'POST':
         f = UrgentRequestForm(request.POST)
         if f.is_valid():
@@ -254,3 +264,25 @@ def contact_us(request):
     else:
         f = Contact_UsForm()
     return render(request, 'core/contact_us.html', {'form': f})
+
+
+def get_user_following(target_user):
+    result = list()
+    for following in Following.objects.filter(user=target_user):
+        try:
+            result.append(getattr(following, 'following_user'))
+        except:
+            pass
+    return result
+
+
+def get_user_follower(target_user):
+    result = list()
+    for follower in Follower.objects.filter(user=target_user):
+        try:
+            follower_user = User.objects.get(username=getattr(follower, 'follower_user'))
+            if getattr(Profile.objects.get(user=follower_user), 'is_volunteer'):
+                result.append(getattr(follower, 'follower_user'))
+        except:
+            pass
+    return result
