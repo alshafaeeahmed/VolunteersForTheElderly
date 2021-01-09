@@ -132,7 +132,6 @@ class contact_us(models.Model):
 # add urgent_request fileds
 class UrgentRequest(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
-    subject = models.CharField(max_length=200)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
