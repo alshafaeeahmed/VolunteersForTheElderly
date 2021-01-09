@@ -36,6 +36,20 @@ def get_UrgentRequests(request):
     return render(request, 'core/all_urgent_request.html', context)
 
 
+def all_contact_us():
+    result = list()
+    users_list = contact_us.objects.all()
+    for user_item in users_list:
+        result.append(user_item)
+    return result
+
+
+def get_contact_us(request):
+    context = {}
+    context.update({'all_contact_us': all_contact_us()})
+    return render(request, 'core/all_contact_us.html', context)
+
+
 # Return all volunteers who are available in the system
 def get_all_available_volunteers(request):
     context = {}
@@ -127,6 +141,8 @@ def profile(request, username):
         context.update({'get_all_UrgentRequests': get_UrgentRequests(request)})
         context.update({'my_followers': get_user_following(person)})
         context.update({'my_following': get_user_follower(person)})
+        context.update({'all_contact_us': all_contact_us()})
+        context.update({'get_contact_us': get_contact_us(request)})
     return render(request, 'core/profile.html', context)
 
 
