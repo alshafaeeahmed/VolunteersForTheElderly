@@ -14,7 +14,7 @@ urlpatterns = [
     path('Thank/', views.Thanks, name='core/Thank.html'),
     url(r'^contact_us/$', views.contact_us, name='core/contact_us'),
     url(r'^updates/$', views.PageUpdate, name='core/updates'),
-    url(r'^about/$', views.PageUpdate, name='core/site_info'),
+    url(r'^about/$', views.Site_info, name='core/site_info'),
     url(r'^all_profiles/$', views.get_all_profiles, name='core/profiles_table'),
     url(r'^available_profiles/$', views.get_all_available_volunteers, name='core/available_profiles.html'),
     url(r'^profiles_gender/$', views.get_all_volunteers_gender, name='core/profiles_gender.html'),
@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^create_comment/(?P<username>\w+)/(?P<post_id>\d+)/$', user_views.create_comment, name="create_comment"),
     path('feed/', user_views.feed, name="feed"),
     url(r'^urgent_request/$', views.UrgentRequest, name='core/urgent_request'),
-    path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
+    path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like")
+    ,
 ]
 
 if settings.DEBUG:

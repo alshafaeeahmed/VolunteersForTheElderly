@@ -121,6 +121,7 @@
                                 {% if not person.profile.is_volunteer %}
                                 {%if not u_form%}
                                 {%if f %}
+
                                 <form action="{% url 'follow_elderly' person.username%}" enctype="multipart/form-data"
                                       method="POST">
                                     {%csrf_token%}

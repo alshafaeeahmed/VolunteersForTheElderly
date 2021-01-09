@@ -140,4 +140,4 @@ class UrgentRequest(models.Model):
         verbose_name_plural = "UrgentRequest"
 
     def __str__(self):
-        return self.name + "-" + self.email
+        return self.name
