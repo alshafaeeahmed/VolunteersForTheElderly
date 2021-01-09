@@ -49,6 +49,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=40, choices=ADDRESS_CHOICES, default='BeerSheba')
     rating = models.CharField(max_length=10, choices=Rating_CHOICES, default='good')
 
+
     def __str__(self):
         return f'{self.user.username} Profile'
 
@@ -116,7 +117,7 @@ class Message(models.Model):
 
 
 # add contact fileds
-class contact_us(models.Model):
+class Contact_us(models.Model):
     name = models.CharField(max_length=200, help_text="Name of the sender")
     email = models.EmailField(max_length=200)
     subject = models.CharField(max_length=200)
@@ -124,7 +125,7 @@ class contact_us(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "contact_us"
+        verbose_name_plural = "Contact_us"
 
     def __str__(self):
         return self.name + "-" + self.email

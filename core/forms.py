@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, contact_us, Site_Info
+from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, Contact_us, Site_Info
 
 
 class UserForm(forms.ModelForm):
@@ -44,7 +44,10 @@ class CreatePost(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['post_text', 'post_picture']
-
+        labels = {
+            'post_text': 'תוכן סיכום',
+            'post_picture': 'הוסף תמונה',
+        }
 
 
 class CreateComment(forms.ModelForm):
@@ -71,20 +74,11 @@ class Site_Info(forms.ModelForm):
 
 class Contact_UsForm(forms.ModelForm):
     class Meta:
-        model = contact_us
-        fields = ['name', 'email', 'subject']
-        labels = {
-            'name': 'תוכן סיכום',
-            'email': 'אימייל',
-            'subject': 'נושא',
-        }
+        model = Contact_us
+        fields = '__all__'
 
 
 class UrgentRequestForm(forms.ModelForm):
     class Meta:
         model = UrgentRequest
-        fields = ['name','subject']
-        labels = {
-            'name': 'תוכן סיכום',
-            'subject': 'נושא',
-        }
+        fields = '__all__'

@@ -9,7 +9,7 @@ from django.views.generic import View
 
 from .forms import UserForm, UpdateUserForm, UpdateProfileForm, CreatePost, CreateComment, \
     PageUpdate, Contact_UsForm, UrgentRequestForm
-from .models import User, Profile, UrgentRequest, Following, Follower
+from .models import User, Profile, UrgentRequest, Following, Follower,Contact_us
 
 
 def get_all_volunteers():
@@ -28,6 +28,20 @@ def all_UrgentRequests():
     for user_item in users_list:
         result.append(user_item)
     return result
+
+
+def all_contact_us():
+    result = list()
+    users_list = Contact_us.objects.all()
+    for user_item in users_list:
+        result.append(user_item)
+    return result
+
+
+def get_contact_us(request):
+    context = {}
+    context.update({'all_contact_us': all_contact_us()})
+    return render(request, 'core/all_contact_us.html', context)
 
 
 def get_UrgentRequests(request):
@@ -127,6 +141,8 @@ def profile(request, username):
         context.update({'get_all_UrgentRequests': get_UrgentRequests(request)})
         context.update({'my_followers': get_user_following(person)})
         context.update({'my_following': get_user_follower(person)})
+        context.update({'all_contact_us': all_contact_us()})
+        context.update({'get_contact_us': get_contact_us(request)})
     return render(request, 'core/profile.html', context)
 
 
@@ -263,7 +279,7 @@ def contact_us(request):
             return redirect('core/Thank.html')
     else:
         f = Contact_UsForm()
-    return render(request, 'core/contact_us.html', {'form': f})
+    return render(request, 'core/Contact_us.html', {'form': f})
 
 
 def get_user_following(target_user):
