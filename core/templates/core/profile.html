@@ -80,17 +80,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/Contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
                             </li>
+                            {% if user.profile.is_admin %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/all_contact_us/"><i class="fa fa-users"></i> יצרו קשר עם האתר </a>
+                                   <a class="nav-link" href="/all_profiles/"><i class="fa fa-wrench "></i>מחיקת מתנדב</a>
                             </li>
-                            {% if user.profile.is_admin %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/all_UrgentRequests/"><i class="fa fa-paper-plane"></i> כל הבקשות </a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="/updates/"><i class="fa fa-bell"></i>שינוי דף תחזוקת האתר </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_contact_us/"><i class="fa fa-users"></i> יצרו קשר עם האתר </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href=" "><i class="fa fa-users"></i> עריכת דף אודות האתר </a>
+                            </li>
                             {%endif%}
                              {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
@@ -103,8 +111,8 @@
                                <a class="nav-link" href="/profiles_gender/"><i class="fa fa-male  "></i>בחירת מין המתנדב</a>
                             </li>
                             <li class="nav-item">
-                                   <a class="nav-link" href="/updates/"><i class="fa fa-wrench "></i>מצב תחזוקה</a>
-                                </li>
+                                   <a class="nav-link" href="/updates/"><i class="fa fa-wrench "></i>מחיקת מתנדב</a>
+                            </li>
                             {%endif%}
 
                         </ul>

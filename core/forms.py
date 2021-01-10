@@ -35,7 +35,7 @@ class UpdateProfileForm(forms.ModelForm):
             'phone_number': 'מספר טאלפון',
             'gender': 'מין',
             'address': 'כתובת',
-            'rating': 'דרוג',
+            'rating': 'דירוג',
             'is_active': 'פעיל',
         }
 

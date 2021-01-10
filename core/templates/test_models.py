@@ -1,11 +1,11 @@
 import unittest
 from django.test import TestCase
 from core.models import Profile, PageUpdate, Site_Info, Post, Following, Follower, Comment, Contact_us, UrgentRequest
-
+#import DJANGO_SETTINGS_MODULE=mysite.settings
 
 class TestProfile(unittest.TestCase):
     def setUp(self):
-        Profile.user.create(name=Profile.user.name, is_valenteer=Ture)
+        Profile.user.create(name=Profile.user.name, is_valenteer='True')
         Profile.user.create(name=Profile.user.name, is_valenteer='False')
 
     def test_profile(self):

@@ -52,7 +52,7 @@ def get_UrgentRequests(request):
 
 def all_contact_us():
     result = list()
-    users_list = contact_us.objects.all()
+    users_list = Contact_us.objects.all()
     for user_item in users_list:
         result.append(user_item)
     return result
@@ -293,7 +293,7 @@ def contact_us(request):
             return redirect('core/Thank.html')
     else:
         f = Contact_UsForm()
-    return render(request, 'core/Contact_us.html', {'form': f})
+    return render(request, 'core/contact_us.html', {'form': f})
 
 
 def get_user_following(target_user):
