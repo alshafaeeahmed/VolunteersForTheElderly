@@ -78,15 +78,19 @@
                                 <a class="nav-link" href="{%url 'logout'%}"><i class="fa fa-sign-out"></i> התנתק </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
+                                <a class="nav-link" href="/Contact_us/"><i class="fa fa-phone"></i> צור קשר </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/all_profiles/"><i class="fa fa-users"></i> כל המשתמשים </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/all_contact_us/"><i class="fa fa-users"></i> יצרו קשר עם האתר </a>
                             </li>
                             {% if user.profile.is_admin %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/all_UrgentRequests/"><i class="fa fa-paper-plane"></i> כל הבקשות </a>
                             </li>
+
                             {%endif%}
                             {% if not person.profile.is_volunteer %}
                             <li class="nav-item">
@@ -119,7 +123,7 @@
                             <div class="card-body text-center">
                                 <img class="card-profile-img" src="{{person.profile.profile_photo.url}}">
                                 <h3 class="mb-3">{{person.username}}</h3>
-                                {% if person.profile.is_volunteer %}
+                                {% if person.profile.is_volunteer  %}
                                 <h3 class="mb-3">מתנדב </h3>
                                 {% else %}
                                 <h3 class="mb-3">מבוגר נכבד</h3>
@@ -294,7 +298,7 @@
                                 {%csrf_token%}
                                 {{u_form|crispy}}
                                 {{p_form|crispy}}
-                                <div class="form-footer">
+                                <div class="form-footFer">
                                     <button class="btn btn-primary btn-block" name="Update" type="submit">Update
                                     </button>
                                 </div>

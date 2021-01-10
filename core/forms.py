@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, contact_us, Site_Info
+from .models import Profile, Post, Comment, UrgentRequest, PageUpdate, Contact_us, Site_Info
 
 
 class UserForm(forms.ModelForm):
@@ -27,18 +27,37 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['status_info', 'profile_photo', 'is_volunteer', 'phone_number', 'gender', 'address', 'rating',
                   'is_active']
+        labels = {
+            'post_text': 'תוכן סיכום',
+            'post_picture': 'תמונה',
+            'status_info': 'סטטוס',
+            'is_volunteer': 'הפוך למתנדב',
+            'phone_number': 'מספר טאלפון',
+            'gender': 'מין',
+            'address': 'כתובת',
+            'rating': 'דרוג',
+            'is_active': 'פעיל',
+        }
 
 
 class CreatePost(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['post_text', 'post_picture']
+        labels = {
+            'post_text': 'תוכן סיכום',
+            'post_picture': 'הוסף תמונה',
+        }
 
 
 class CreateComment(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['comment_text']
+        labels = {
+            'comment_text': 'תגובה',
+
+        }
 
 
 class PageUpdate(forms.ModelForm):
@@ -55,7 +74,7 @@ class Site_Info(forms.ModelForm):
 
 class Contact_UsForm(forms.ModelForm):
     class Meta:
-        model = contact_us
+        model = Contact_us
         fields = '__all__'
 
 

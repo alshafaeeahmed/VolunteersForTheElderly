@@ -1,6 +1,6 @@
 import unittest
 from django.test import TestCase
-from core.models import Profile, PageUpdate, Site_Info, Post, Following, Follower, Comment, contact_us, UrgentRequest
+from core.models import Profile, PageUpdate, Site_Info, Post, Following, Follower, Comment, Contact_us, UrgentRequest
 
 
 class TestProfile(unittest.TestCase):
